@@ -1,5 +1,3 @@
-// package 누적합;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,32 +6,28 @@ import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(stringTokenizer.nextToken());
+        int m = Integer.parseInt(stringTokenizer.nextToken());
 
-        int[] arr = new int[n + 1];
-        arr[0] = 0;
+        int[] s = new int[n + 1];
+        stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 
-        StringTokenizer st2 = new StringTokenizer(br.readLine());
         for (int i = 1; i <= n; i++) {
-            arr[i] = arr[i - 1] + Integer.parseInt(st2.nextToken());
+            s[i] = s[i-1] + Integer.parseInt(stringTokenizer.nextToken());
+//            System.out.println(s[i]);
         }
 
-//        System.out.println(Arrays.toString(arr));
+        for (int i = 0; i < m; i++) {
+            stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+            int start = Integer.parseInt(stringTokenizer.nextToken());
+            int end = Integer.parseInt(stringTokenizer.nextToken());
 
-        for (int i = 1; i <= m; i++) {
-            StringTokenizer st3 = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st3.nextToken());
-            int x2 = Integer.parseInt(st3.nextToken());
-
-            int sum = 0;
-            sum += arr[x2];
-            sum -= arr[x1 - 1];
-
-            System.out.println(sum);
+            System.out.println(s[end] - s[start - 1]);
         }
+
+
     }
 }
