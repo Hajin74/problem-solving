@@ -1,32 +1,13 @@
-class Solution : 
-    n = int(input())
-    
-    count = 0
-    for i in range(n) :
-        flag = 1
-        alpha_list = []
-        word = input()
-        for j in word :
-            if j not in alpha_list :
-                alpha_list.append(j)
-            else :
-                if j != prev_s :
-                    flag = 0
-                    break
+n = int(input())
 
-            prev_s = j
-        
-        if flag == 1 :
-            count += 1
-            
-    print(count)
-    
-    # 
-    class Solution : 
-    count = 0
-    for i in range(int(input())) :
-        word = input()
-        if list(word) == sorted(word, key=word.find) :
-            count += 1
-    
-    print(count)
+count = n
+for i in range(n):
+    word = input()
+    for j in range(len(word) - 1):
+        if word[j] == word[j+1]:
+            pass
+        elif word[j] in word[j+1:]:
+            count -= 1
+            break
+
+print(count)
