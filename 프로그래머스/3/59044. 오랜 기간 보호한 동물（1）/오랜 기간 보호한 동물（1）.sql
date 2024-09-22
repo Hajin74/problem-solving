@@ -1,8 +1,8 @@
 -- 코드를 입력하세요
-SELECT AI.NAME, AI.DATETIME
-FROM ANIMAL_INS AI
-LEFT OUTER JOIN ANIMAL_OUTS AO
-ON AI.ANIMAL_ID = AO.ANIMAL_ID
-WHERE AO.ANIMAL_ID IS NULL
-ORDER BY AI.DATETIME ASC
+SELECT i.name, i.datetime
+FROM animal_ins i
+LEFT JOIN animal_outs o
+ON i.animal_id = o.animal_id
+WHERE o.animal_id IS NULL
+ORDER BY i.datetime
 LIMIT 3;
