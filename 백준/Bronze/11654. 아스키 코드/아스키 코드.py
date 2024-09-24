@@ -1,5 +1,2 @@
-class Solution :
-    x = input()
-
-    print(ord(x))
-
+n = input()
+print(ord(n))
