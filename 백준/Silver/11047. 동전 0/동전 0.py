@@ -1,15 +1,13 @@
-class Solution : 
-    n, k = map(int, input().split())
+n, k = map(int, input().split())
 
-    coins = []
-    for i in range(n):
-        coins.append(int(input()))
-    coins.sort(reverse=True)
+coins = [int(input()) for _ in range(n)]
+li = list(filter(lambda coin : coin <= k, coins))
+li.reverse()
 
-    count = 0
-    for i in coins:
-        if i <= k :
-            count += k // i
-            k %= i
-    
-    print(count)
+count = 0
+for e in li:
+    # print(k)
+    count += k // e
+    k %= e
+
+print(count)
