@@ -1,14 +1,14 @@
-import sys
-
 n = int(input())
-a = list(map(int, sys.stdin.readline().split()))
-b = list(map(int, sys.stdin.readline().split()))
 
-a.sort()
-b.sort(reverse=True)
+a_list = list(map(int, input().split()))
+a_list.sort()
+a_list.reverse()
+
+b_list = list(map(int, input().split()))
+b_list.sort()
 
 result = 0
-for pair in zip(a, b):
-    result += pair[0] * pair[1]
+for i in range(n):
+    result += a_list[i] * b_list[i]
 
 print(result)
