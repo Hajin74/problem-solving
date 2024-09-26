@@ -1,12 +1,13 @@
-class Solution : 
-    n = int(input())
-    time = list(map(int, input().split()))
-    time.sort()
+# 빨리 끝나는 사람부터 인출해야함
 
-    sum = 0
-    min_sum = 0
-    for i in time:
-        sum += i
-        min_sum += sum
-    
-    print(min_sum)
+n = int(input())
+watings = list(map(int, input().split()))
+watings.sort()
+
+sum = 0
+result = 0
+for wating in watings:
+    result += wating
+    sum +=  result
+
+print(sum)
