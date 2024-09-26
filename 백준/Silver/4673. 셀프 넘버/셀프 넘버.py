@@ -1,19 +1,12 @@
-class Solution :
-    def d(n) :
-        sum = n
-        while n > 0 :
-            sum += n % 10
-            n //= 10
-        return sum
+natural_num = set(range(1, 10001))
+generated_num = set()
 
-    not_self_number_list = []
-    for i in range(1, 10001):
-        not_self_number_list.append(d(i))
-    
-    for i in range(1, 10001):
-        if i not in not_self_number_list:
-            print(i)
+for i in range(1, 10001):
+    # i(원본 숫자)에 자릿수대로 더하기
+    for j in str(i):
+        i += int(j)
+    generated_num.add(i)
 
-
-    
-    
+self_num = sorted(natural_num - generated_num)
+for i in self_num:
+    print(i)
