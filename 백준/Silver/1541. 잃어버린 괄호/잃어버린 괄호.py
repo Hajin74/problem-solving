@@ -1,15 +1,17 @@
-class Solution:
-    exp = input().split('-')
+import sys
+input = sys.stdin.readline()
 
+s = input.split('-')
+
+temp = []
+for i in s:
     sum = 0
+    for j in i.split('+'):
+        sum += int(j)
+    temp.append(sum)
 
-    # 0번째 원소 더하기
-    for i in exp[0].split('+'):
-        sum += int(i)
-
-    # 나머지 원소들 다 빼기
-    for i in exp[1:]:
-        for j in i.split('+'):
-            sum -= int(j)
-
-    print(sum)
+result = temp[0]
+for i in temp[1:]:
+    result -= i
+    
+print(result)    
