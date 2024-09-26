@@ -1,11 +1,15 @@
-class Solution : 
-    croatia_alphabet = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+word = input()
+croatia_dict = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
 
-    word = input()
-    
-    for i in croatia_alphabet :
-        word = word.replace(i, '*')
-    
-    print(len(word))
+count = 0
+for c in croatia_dict:
+    count += word.count(c)
+    word = word.replace(c, ' ')
+    # print(word)
 
-    
+
+if len(word) != 0:
+    word = word.replace(' ', '')
+    count += len(word)
+  
+print(count)
