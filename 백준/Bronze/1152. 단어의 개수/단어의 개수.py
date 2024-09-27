@@ -1,3 +1,2 @@
-class Solution : 
-    words = list(input().split())
-    print(len(words))
+words = input().split()
+print(len(words))
