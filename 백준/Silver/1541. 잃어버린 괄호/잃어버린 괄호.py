@@ -1,17 +1,14 @@
-import sys
-input = sys.stdin.readline()
+expression = input()
 
-s = input.split('-')
+arr = expression.split('-')
 
-temp = []
-for i in s:
-    sum = 0
-    for j in i.split('+'):
-        sum += int(j)
-    temp.append(sum)
+result = 0
+temp = arr[0].split('+')
+for j in temp:
+        result += int(j)
 
-result = temp[0]
-for i in temp[1:]:
-    result -= i
-    
-print(result)    
+for i in range(1, len(arr)):
+    temp = arr[i].split('+')
+    for j in temp:
+        result -= int(j)
+print(result)
