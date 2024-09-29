@@ -1,48 +1,36 @@
-from collections import deque
+n = int(input())
+graph = [list(map(int, input())) for _ in range(n)]
 
-n = int(input()) # 지도의 크기
-graph = []
-for i in range(n):
-    graph.append(list(map(int, input())))
-
-# 방향
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
-def bfs(x, y):
-    queue = deque()
-    queue.append([x, y])
+def dfs(x, y):
+    global count
 
-    # 첫번째 집 방문 처리
-    graph[x][y] = 0
-    count = 1 
-
-    while queue:
-        x, y = queue.popleft()
+    if x < 0 or y < 0 or x >= n or y >= n:
+        return
+    
+    if graph[x][y] == 1:
+        count += 1
+        graph[x][y] = 0 
 
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
+            dfs(nx, ny)
 
-            if nx < 0 or ny < 0 or nx >= n or ny >= n:
-                continue
-
-            if graph[nx][ny] == 1:
-                graph[nx][ny] = 0
-                queue.append([nx, ny])
-                count += 1
     
-    return count
-
-result = []
+count = 0
+homes = []
 
 for i in range(n):
     for j in range(n):
         if graph[i][j] == 1:
-            count = bfs(i, j)
-            result.append(count)
-result.sort()
+            dfs(i, j)
+            homes.append(count)
+            count = 0
 
-print(len(result))
-for k in result:
-    print(k)
+homes.sort()
+print(len(homes))
+for home in homes:
+    print(home)
