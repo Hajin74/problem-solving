@@ -1,7 +1,12 @@
+# 1부터 최대 높이까지 안전영역 개수를 구한다
+# 안전영역의 개수가 가장 큰 걸 출력한다
+# 비의 높이를 입력받아 해당 높이와 같거나 작은건 방문하지 못하게 한다
+# 이 때, 안전영역은 방문할 수 있는 곳의 덩어리의 개수다
+
+from collections import deque
 import sys
 import copy
 
-sys.setrecursionlimit(10**6)
 n  = int(input())
 graph = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 
@@ -9,17 +14,24 @@ graph = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
-def dfs(graph, x, y):
-    graph[x][y] = 0
+def bfs(graph, x, y):
+    queue = deque()
+    queue.append((x, y))
+    graph[x][y] = 0 # 방문처리
 
-    for i in range(4):
-        nx, ny = x + dx[i], y + dy[i]
+    while queue:
+        curr_x, curr_y = queue.popleft()
 
-        if nx < 0 or ny < 0 or nx >= n or ny >= n:
+        for i in range(4):
+            nx, ny = curr_x + dx[i], curr_y + dy[i]
+
+            if nx < 0 or ny < 0 or nx >= n or ny >= n:
                 continue
 
-        if graph[nx][ny] != 0:
-            dfs(graph, nx, ny)
+            # 비의 잠기지 않고 방문하지 않았으면
+            if graph[nx][ny] != 0:
+                graph[nx][ny] = 0
+                queue.append((nx, ny))
 
 
 # 비의 잠긴 부분 표시하기
@@ -41,7 +53,7 @@ for k in range(max_height + 1):
     for i in range(n):
         for j in range(n):
             if under_graph[i][j] != 0:
-                dfs(under_graph, i, j)
+                bfs(under_graph, i, j)
                 count += 1
     areas.append(count)
 
