@@ -1,5 +1,5 @@
-from collections import deque
 import sys
+sys.setrecursionlimit(10**6)
 
 n, m = map(int, sys.stdin.readline().split())
 
@@ -10,22 +10,18 @@ for _ in range(m):
     graph[v].append(u)
 
 
-def bfs(graph, v, visited):
-    queue = deque([v])
+def dfs(graph, v, visited):
     visited[v] = True
 
-    while queue:
-        curr_node = queue.popleft()
-        for next_node in graph[curr_node]:
-            if not visited[next_node]:
-                visited[next_node] = True
-                queue.append(next_node)
-
+    for next_node in graph[v]:
+        if not visited[next_node]:
+            dfs(graph, next_node, visited)
+    
 visited = [False for _ in range(n+1)]
 count = 0
 for i in range(1, n+1):
     if not visited[i]:
-        bfs(graph, i, visited)
+        dfs(graph, i, visited)
         count += 1
 
 print(count)
