@@ -1,10 +1,9 @@
-class Solution :
-    n = int(input())
+n = int(input())
 
-    for i in range(n) :
-        for j in range(1, n - i):
-            print(' ', end='')
-        for j in range(i + 1):
-            print('*', end='')
-        print()
-    
+i = 1
+while i <= n:
+    empty = " " * (n-i)
+    star = "*" * i
+    line = empty + star
+    print(line)
+    i += 1
