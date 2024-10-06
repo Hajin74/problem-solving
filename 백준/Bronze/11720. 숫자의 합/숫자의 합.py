@@ -1,9 +1,7 @@
-class Solution :
-    N = input()
-    num = list(map(int, input()))
+n = int(input())
+num = input()
 
-    print(sum(num))
-
-
-    
-    
+sum = 0
+for i in range(len(num)):
+    sum += int(num[i])
+print(sum)
