@@ -1,6 +1,6 @@
-class Solution :
-    t = int(input())
-    for i in range(t) :
-        a, b = map(int, input().split())
-        print('Case #%d: %d + %d = %d' % (i + 1, a, b, a + b))
-    
+t = int(input())
+for i in range(t):
+    a, b = map(int, input().split())
+    result = a + b
+    index = i + 1
+    print(f"Case #{index}: {a} + {b} = {result}")
