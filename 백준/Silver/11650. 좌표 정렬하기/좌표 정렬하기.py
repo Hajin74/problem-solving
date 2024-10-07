@@ -1,12 +1,6 @@
-import sys
-
-input = sys.stdin.readline
-
 n = int(input())
-li = []
-for i in range(n):
-    x, y = map(int, input().split())
-    li.append((x, y))
+pos = [list(map(int, input().split())) for _ in range(n)]
 
-for t in sorted(li):
-    print(t[0], t[1])
+pos = sorted(pos, key=lambda x: (x[0], x[1]))
+for x, y in pos:
+    print(x, y)
