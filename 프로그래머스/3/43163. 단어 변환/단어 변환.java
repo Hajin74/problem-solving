@@ -1,50 +1,53 @@
 import java.util.*;
 
-class Solution {        
+class Solution {
+    static boolean[] visited;
+    
     public int solution(String begin, String target, String[] words) {
         int answer = 0;
-        
+
         Queue<String> queue = new LinkedList<>();
-        Set<String> unvisitedSet = new HashSet<>(Arrays.asList(words));
-        
-        if (!unvisitedSet.contains(target)) {
-            return answer;
+        Set<String> set = new HashSet<>(Arrays.asList(words));
+
+        if (!set.contains(target)) { // 변환할 수 있는 단어 목록에 타켓이 없음
+            return 0;
         }
-        
+
         queue.offer(begin);
-        unvisitedSet.remove(begin);
-        
+        set.remove(begin);
+
         while (!queue.isEmpty()) {
             for (int i = 0; i < queue.size(); i++) {
-                String curr = queue.poll();
-                
-                if (curr.equals(target)) {
+                String now = queue.poll();
+
+                if (now.equals(target)) {
                     return answer;
                 }
-                
-                for (String word : unvisitedSet.toArray(new String[unvisitedSet.size()])) {
-                    if (canConvert(curr, word)) {
+
+                // 아직 쓰지 않은 단어들 : set
+                for (String word : set.toArray(new String[set.size()])) {
+                    // 변환 가능하면 큐에 단어 추가하고, set에서 제거 (set으로 방문처리)
+                    if (canConvert(now, word)) {
                         queue.offer(word);
-                        unvisitedSet.remove(word);
+                        set.remove(word); 
                     }
                 }
             }
-            
+
             answer++;
         }
-        
-        return 0; // 변환할 수 없는 경우
+
+        return 0;
     }
     
-    private boolean canConvert(String curr, String word) {
-        int diffChar = 0;
-        for (int i = 0; i < curr.length(); i++) {
-            if (curr.charAt(i) != word.charAt(i)) {
-                diffChar++;
+    public static boolean canConvert(String a, String b) {
+        int count = 0;
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) != b.charAt(i)) {
+                count++;
             }
         }
         
-        return diffChar == 1;
+        return count == 1;
     }
-    
 }
