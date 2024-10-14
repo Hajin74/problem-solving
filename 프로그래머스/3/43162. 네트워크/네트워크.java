@@ -1,36 +1,37 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 class Solution {
+    static boolean[] visited;
+    
     public int solution(int n, int[][] computers) {
-        boolean[] visited = new boolean[n];
+        this.visited = new boolean[n];
         
-        int count = 0;
+        int network = 0;
         for (int i = 0; i < n; i++) {
             if (!visited[i]) {
-                bfs(computers, i, visited);
-                count++;
+                bfs(n, computers, i);
+                network++;
             }
         }
         
-        return count;
+        return network;
     }
     
-    public void bfs(int[][] computers, int c, boolean[] visited) {
-        Queue<Integer> queue = new LinkedList<Integer>();
-        queue.add(c);
+    public static void bfs(int n, int[][] computers, int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(v);
+        visited[v] = true; // 현재 컴퓨터 방문처리
         
         while (!queue.isEmpty()) {
-            int curr = queue.poll();
+            int now = queue.poll();
             
-            // 인접한 컴퓨터 탐색
-            for (int i = 0; i < computers[curr].length; i++) {
-                if (computers[curr][i] == 1) { // 1이면 연결된 컴퓨터
-                    // 방문 안했다면 방문하고 큐에 넣기
-                    if (!visited[i]) {
-                        visited[i] = true;
-                        queue.add(i);
-                    }
+            for (int i = 0; i < n; i++) {
+                int next = computers[now][i];
+                
+                // 방문하지 않고, 연결이 되어 있는 컴퓨터면
+                if (!visited[i] && next == 1 ) {
+                    queue.add(i);
+                    visited[i] = true;
                 }
             }
         }
