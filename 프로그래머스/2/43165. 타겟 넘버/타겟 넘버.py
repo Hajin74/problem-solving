@@ -1,16 +1,17 @@
 def solution(numbers, target):
-    dfs(numbers, target, 0, 0)
-    return count
+    dfs(numbers, 0, 0, target)
+    
+    return answer
 
-count = 0
+def dfs(numbers, sum, i, target):
+    global answer
     
-def dfs(numbers, target, curr_sum, idx):
-    global count
-    
-    if idx == len(numbers):
-        if curr_sum == target:
-            count += 1
+    if i == len(numbers):
+        if sum == target:
+            answer += 1
         return
     
-    dfs(numbers, target, curr_sum + numbers[idx], idx + 1)
-    dfs(numbers, target, curr_sum - numbers[idx], idx + 1)
+    dfs(numbers, sum + numbers[i], i + 1, target)
+    dfs(numbers, sum - numbers[i], i + 1, target)
+  
+answer = 0
