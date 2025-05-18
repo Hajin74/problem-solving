@@ -1,7 +1,8 @@
--- 코드를 입력하세요
-SELECT i.animal_id, i.name
-FROM animal_ins i
-JOIN animal_outs o
-ON i.animal_id = o.animal_id
-WHERE i.datetime > o.datetime
-ORDER BY i.datetime ASC;
+-- 보호 시작일보다 입양일이 더 빠른 동물 아이디와 이름 조회
+SELECT I.ANIMAL_ID, I.NAME
+FROM ANIMAL_INS I
+JOIN ANIMAL_OUTS O
+ON I.ANIMAL_ID = O.ANIMAL_ID
+WHERE I.DATETIME > O.DATETIME
+ORDER BY I.DATETIME ASC
+;
