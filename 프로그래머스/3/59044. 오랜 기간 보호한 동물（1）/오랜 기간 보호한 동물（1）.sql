@@ -1,8 +1,9 @@
--- 코드를 입력하세요
-SELECT i.name, i.datetime
-FROM animal_ins i
-LEFT JOIN animal_outs o
-ON i.animal_id = o.animal_id
-WHERE o.animal_id IS NULL
-ORDER BY i.datetime
-LIMIT 3;
+-- 입양을 못 간 동물 중, 가장 오래 보호소에 있었던 동물 3마리의 이름과 보호 시작일을, 보호 시작일 순으로 조회
+SELECT I.NAME, I.DATETIME
+FROM ANIMAL_INS I
+LEFT JOIN ANIMAL_OUTS O
+ON I.ANIMAL_ID = O.ANIMAL_ID
+WHERE O.ANIMAL_ID IS NULL
+ORDER BY I.DATETIME ASC
+LIMIT 3
+;
